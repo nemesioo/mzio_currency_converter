@@ -1,11 +1,18 @@
+"use server";
+
 import type { ExchangeRates } from "./store";
 
+// Fetch available currencies
 export async function fetchCurrencies() {
   try {
     const res = await fetch("https://api.frankfurter.dev/v1/currencies");
     if (!res.ok) throw new Error("Failed to fetch currencies");
 
-    const data: Record<string, string> = await res.json();
+    const data: Record<string, string> = (await res.json()) as Record<
+      string,
+      string
+    >;
+
     console.log(data);
 
     // Convert object to array of { value, label } objects
@@ -16,13 +23,15 @@ export async function fetchCurrencies() {
   }
 }
 
+// Fetch exchange rates for a given base currency
 export async function fetchExchangeRates(baseCurrency: string = "PHP") {
   try {
     const res = await fetch(
       `https://api.frankfurter.dev/v1/latest?base=${baseCurrency}`,
     );
     if (!res.ok) throw new Error("Failed to fetch exchange rates");
-    const result: ExchangeRates = await res.json();
+
+    const result: ExchangeRates = (await res.json()) as ExchangeRates;
 
     return result; // Returns { amount, base, date, rates }
   } catch (error) {
