@@ -58,7 +58,7 @@ export default function HomePage() {
     server_fetchExchangeRates(baseCurrency);
   }, [baseCurrency]);
 
-  const exchange = exchangeRates?.rates[qouteCurrency]! * value;
+  const exchange = (exchangeRates?.rates[qouteCurrency] ?? 0) * value;
 
   return (
     // <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
@@ -115,7 +115,7 @@ export default function HomePage() {
                   {value} {baseCurrency} = {exchange} {qouteCurrency}
                 </span>
                 <span className="text-white">
-                  1 {baseCurrency} = {exchangeRates?.rates[qouteCurrency]!}
+                  1 {baseCurrency} = {exchangeRates?.rates[qouteCurrency] ?? 1}
                   {qouteCurrency}
                 </span>
               </div>
