@@ -7,7 +7,7 @@ export async function fetchCurrencies() {
     const res = await fetch("https://api.frankfurter.dev/v1/currencies");
     if (!res.ok) throw new Error("Failed to fetch currencies");
 
-    const data = (await res.json()) as Record<string, string>;
+    const data: Record<string, string> = await res.json();
     console.log(data);
 
     // Convert object to array of { value, label } objects
@@ -24,7 +24,7 @@ export async function fetchExchangeRates(baseCurrency: string = "PHP") {
       `https://api.frankfurter.dev/v1/latest?base=${baseCurrency}`,
     );
     if (!res.ok) throw new Error("Failed to fetch exchange rates");
-    const result = (await res.json()) as ExchangeRates;
+    const result: ExchangeRates = await res.json();
 
     return result; // Returns { amount, base, date, rates }
   } catch (error) {

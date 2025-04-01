@@ -19,7 +19,7 @@ import {
 import { cn } from "~/lib/utils";
 
 type CurrencySelectionProps = {
-  currencies: { value: string; label: string }[];
+  currencies: { value: string; label: string }[] | null;
   onCurrencyChange: (currency: string) => void;
   value: string;
 };
@@ -41,7 +41,7 @@ export function CurrencySelection({
           className="w-[200px] justify-between"
         >
           {value
-            ? currencies.find((currencie) => currencie.value === value)?.label
+            ? currencies!.find((currencie) => currencie.value === value)?.label
             : "Select currency..."}
           <ChevronsUpDown className="opacity-50" />
         </Button>
@@ -52,7 +52,7 @@ export function CurrencySelection({
           <CommandList>
             <CommandEmpty>No currency found.</CommandEmpty>
             <CommandGroup>
-              {currencies.map((currencie) => (
+              {currencies!.map((currencie) => (
                 <CommandItem
                   key={currencie.value}
                   value={currencie.value}
