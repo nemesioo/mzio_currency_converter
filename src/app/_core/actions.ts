@@ -1,5 +1,7 @@
 "use server";
 
+import type { ExchangeRates } from "./store";
+
 export async function fetchCurrencies() {
   try {
     const res = await fetch("https://api.frankfurter.dev/v1/currencies");
@@ -22,9 +24,9 @@ export async function fetchExchangeRates(baseCurrency: string = "PHP") {
       `https://api.frankfurter.dev/v1/latest?base=${baseCurrency}`,
     );
     if (!res.ok) throw new Error("Failed to fetch exchange rates");
+    const result: ExchangeRates = await res.json();
 
-    const data = await res.json();
-    return data; // Returns { amount, base, date, rates }
+    return result; // Returns { amount, base, date, rates }
   } catch (error) {
     console.error("Error fetching exchange rates:", error);
     return null;

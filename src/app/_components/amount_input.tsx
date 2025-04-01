@@ -10,8 +10,6 @@ export default function AmountInput({
   value,
   onValueChange,
 }: AmountInputProps) {
-  //   const [value, setValue] = useState("");
-
   return (
     <Input
       type="text"
