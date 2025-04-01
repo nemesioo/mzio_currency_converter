@@ -24,7 +24,7 @@ export async function fetchCurrencies() {
 }
 
 // Fetch exchange rates for a given base currency
-export async function fetchExchangeRates(baseCurrency: string = "PHP") {
+export async function fetchExchangeRates(baseCurrency = "PHP") {
   try {
     const res = await fetch(
       `https://api.frankfurter.dev/v1/latest?base=${baseCurrency}`,
