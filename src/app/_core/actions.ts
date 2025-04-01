@@ -1,5 +1,3 @@
-"use server";
-
 import type { ExchangeRates } from "./store";
 
 export async function fetchCurrencies() {
