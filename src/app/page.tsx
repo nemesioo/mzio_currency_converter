@@ -90,7 +90,7 @@ export default function HomePage() {
                     From
                   </Label>
                   <CurrencySelection
-                    currencies={currencies!.filter(
+                    currencies={(currencies ?? []).filter(
                       (c) => c.value !== qouteCurrency,
                     )}
                     onCurrencyChange={setBaseCurrency}
@@ -102,7 +102,7 @@ export default function HomePage() {
                     To
                   </Label>
                   <CurrencySelection
-                    currencies={currencies!.filter(
+                    currencies={(currencies ?? []).filter(
                       (c) => c.value !== baseCurrency,
                     )}
                     onCurrencyChange={setQouteCurrency}
